@@ -1,3 +1,42 @@
+module type Float = {
+  type t;
+  type view = float;
+  let make: float => t;
+  let add: (t, t) => t;
+  let sum: (t, t) => t;
+  let div: (t, t) => option(t);
+  let view: t => view;
+};
+
+module Float: Float = {
+  type t = float;
+  type view = float;
+  let make: float => t = t => t;
+  let add: (t, t) => t = (amount1, amount2) => amount1 +. amount2;
+  let sum: (t, t) => t = (amount1, amount2) => amount1 *. amount2;
+  let div: (t, t) => option(t) =
+    (amount1, amount2) => amount2 != 0. ? Some(amount1 /. amount2) : None;
+  let view = m => m;
+};
+
+module Amount: Float = {
+  include Float;
+  let make: float => t =
+    amount => amount > 0. ? Float.make(amount) : Float.make(0.);
+};
+
+module Rate: Float = {
+  include Float;
+  let make = rate => Float.make(rate /. 100.);
+};
+module Income: Float = {
+  include Amount;
+};
+
+module Credit: Float = {
+  include Amount;
+};
+
 module People: {
   type age =
     | More60Year
@@ -7,17 +46,17 @@ module People: {
     name: string,
     firstname: string,
     age,
-    income: float,
-    credits: option(array(float)),
+    income: Income.t,
+    credits: option(array(Credit.t)),
   };
 
   let make:
     (
       ~name: string,
       ~firstname: string,
-      ~income: float,
+      ~income: Income.t,
       ~hasMoreThan60Years: bool,
-      ~credits: option(array(float))
+      ~credits: option(array(Credit.t))
     ) =>
     t;
   let view: t => view;
@@ -25,20 +64,21 @@ module People: {
   type age =
     | More60Year
     | Less60Years;
+
   type view = {
     name: string,
     firstname: string,
     age,
-    income: float,
-    credits: option(array(float)),
+    income: Income.t,
+    credits: option(array(Credit.t)),
   };
 
   type t = {
     name: string,
     firstname: string,
     age,
-    income: float,
-    credits: option(array(float)),
+    income: Income.t,
+    credits: option(array(Credit.t)),
   };
 
   let make = (~name, ~firstname, ~income, ~hasMoreThan60Years, ~credits) => {
@@ -89,7 +129,7 @@ module Household: {
 
 module Indebtedness: {
   type indebtedness = {
-    sumCredit: float,
+    sumCredit: Credit.t,
     rate: float,
   };
   type t;
@@ -99,10 +139,10 @@ module Indebtedness: {
 
   let view: t => view;
 
-  let make: (~credits: array(float)=?, float) => t;
+  let make: (~credits: array(Credit.t)=?, float) => t;
 } = {
   type indebtedness = {
-    sumCredit: float,
+    sumCredit: Credit.t,
     rate: float,
   };
   type view =
@@ -124,12 +164,16 @@ module Indebtedness: {
     switch (credits) {
     | Some(credits) =>
       let sumCredit =
-        Relude.Array.foldLeft((acc, credit) => credit +. acc, 0., credits);
-      let indebtednessRate = sumCredit *. 100. /. revenu;
+        Relude.Array.foldLeft(
+          (acc, credit) => Credit.add(credit, acc),
+          Credit.make(0.),
+          credits,
+        );
+      let indebtednessRate = Credit.view(sumCredit) *. 100. /. revenu;
       indebtednessRate >= 33.
         ? More33({rate: indebtednessRate, sumCredit})
         : Less33({rate: indebtednessRate, sumCredit});
-    | None => Less33({rate: 0., sumCredit: 0.})
+    | None => Less33({rate: 0., sumCredit: Credit.make(0.)})
     };
   };
 };
@@ -142,16 +186,16 @@ module Loan: {
     | TwentyFiveYears;
   type view = {
     duration,
-    monthlyPayment: float,
+    monthlyPayment: Amount.t,
     rate: float,
-    total: float,
+    total: Amount.t,
   };
   let make:
     (
       ~duration: duration,
-      ~monthlyPayment: float,
+      ~monthlyPayment: Amount.t,
       ~rate: float,
-      ~total: float
+      ~total: Amount.t
     ) =>
     t;
   let view: t => view;
@@ -163,15 +207,15 @@ module Loan: {
 
   type view = {
     duration,
-    monthlyPayment: float,
+    monthlyPayment: Amount.t,
     rate: float,
-    total: float,
+    total: Amount.t,
   };
   type t = {
     duration,
-    monthlyPayment: float,
+    monthlyPayment: Amount.t,
     rate: float,
-    total: float,
+    total: Amount.t,
   };
 
   let make = (~duration, ~monthlyPayment, ~rate, ~total) => {
