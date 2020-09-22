@@ -2,13 +2,13 @@
 
 ## Picth
 
-Dans cette étape,
-on va vouloir créer une fonction `make` dans chaque module qui se chargera de créer un `type t` et on voudra s'assurer que seul le module puisse manipuler le type t;
+Nous allons être à manipuler des floats ... certe mais ça serait bien de pas se tromper entre un taux et un montant total
 
-- Créer un `type view` pour chaque module qui sera pour le moment le même que le `type t`
-- Ajouter une signature à chaque module qui expose `t` comme un _phantom type_ ainsi que `view`
-- Créer une fonction `make` pour chaque module qui retourne un `t`
-- Créer une fonction `view` pour chaque module qui aura la signature suivant `t => view`
+Il nous faut donc créer notre propre Float et l'implémenter pour tous les autre
+- Creer un module type Float qui prend les opération courante sur les float ainsi qu'une fonction make et un float
+- creer un module pour chaque float utilisé et modifier l'implémentation
+- Bonus: créer les operateurs infix 
+
 
 ## Installation
 ```bash
@@ -24,5 +24,4 @@ Lancer NextJs
 ```bash
 yarn
 ```
-
 
