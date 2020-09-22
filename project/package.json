@@ -1,0 +1,56 @@
+{
+  "name": "calculator",
+  "version": "0.1.0",
+  "scripts": {
+    "prebuild": "rm -rf dist && yarn clean",
+    "build": "yarn build:styles && yarn bsb -make-world && next build && next export",
+    "build:styles": "tailwindcss build styles/styles.css -o styles/tailwind.css",
+    "start": "next start",
+    "reason": "bsb -make-world -w",
+    "dev": "next",
+    "clean": "bsb -clean-world"
+  },
+  "keywords": [
+    "BuckleScript",
+    "ReasonReact",
+    "reason-react"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@mobily/re-date": "^0.10.0",
+    "@zeit/next-css": "^1.0.1",
+    "babel-loader": "^8.1.0",
+    "bs-bastet": "^1.2.5",
+    "mini-css-extract-plugin": "^0.11.2",
+    "next": "^9.3.5",
+    "next-transpile-modules": "^3.2.0",
+    "re-classnames": "^5.0.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "reason-react": ">=0.7.0",
+    "reason-react-update": "^2.0.0",
+    "relude": "^0.63.1",
+    "tailwindcss": "^1.8.8"
+  },
+  "devDependencies": {
+    "@dylanirlbeck/tailwind-ppx": "^0.8.2",
+    "@fullhuman/postcss-purgecss": "^2.3.0",
+    "@glennsl/bs-jest": "^0.5.1",
+    "@tailwindcss/custom-forms": "^0.2.1",
+    "autoprefixer": "^9.5.1",
+    "bs-platform": "^7.2.2",
+    "cross-env": "^5.1",
+    "css-loader": "^4.3.0",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "html-webpack-plugin": "^3.0.6",
+    "next-purgecss": "^4.0.0",
+    "parcel-bundler": "^1.12.4",
+    "postcss": "^6.0.19",
+    "postcss-loader": "^4.0.1",
+    "style-loader": "^0.20.3",
+    "webpack": "^4.44.1",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.1.1"
+  }
+}

@@ -1,0 +1,13 @@
+.DS_Store
+.merlin
+.bsb.lock
+npm-debug.log
+/lib/bs/
+/node_modules/
+/bundleOutput/
+.tailwind_ppx_cache
+.cache
+.next
+tags
+out
+*.bs.js

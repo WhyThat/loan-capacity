@@ -1,0 +1,50 @@
+{
+  "name": "reason-react-examples",
+  "reason": {
+    "react-jsx": 3
+  },
+  "sources": [
+    {
+      "dir": "components",
+      "subdirs": true,
+    },
+    {
+      "dir": "core",
+      "subdirs": true,
+    },
+    {
+      "dir": "__tests__",
+      "subdirs": true,
+      "type": "dev"
+    }
+  ],
+  "generators": [
+    {
+      "name": "gen-tailwind",
+      "command": "tailwindcss build $in -o $out"
+    }
+  ],
+  "bsc-flags": [
+    "-bs-super-errors",
+    "-bs-no-version-header"
+  ],
+  "package-specs": [
+    {
+      "module": "commonjs",
+      "in-source": true
+    }
+  ],
+  "ppx-flags": [["@dylanirlbeck/tailwind-ppx/bin/tailwind-ppx", "-path ./styles/tailwind.css"]],
+  "suffix": ".bs.js",
+  "namespace": true,
+  "bs-dev-dependencies": ["@glennsl/bs-jest"],
+  "bs-dependencies": [
+    "re-classnames",
+    "bs-bastet",
+    "relude",
+    "reason-react",
+    "@mobily/re-date",
+    "reason-react-update"
+  ],
+  "refmt": 3
+}
