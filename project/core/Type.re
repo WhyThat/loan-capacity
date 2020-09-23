@@ -37,65 +37,6 @@ module Credit: Float = {
   include Amount;
 };
 
-module People: {
-  type age =
-    | More60Year
-    | Less60Years;
-  type t;
-  type view = {
-    name: string,
-    firstname: string,
-    age,
-    income: Income.t,
-    credits: option(array(Credit.t)),
-  };
-
-  let make:
-    (
-      ~name: string,
-      ~firstname: string,
-      ~income: Income.t,
-      ~hasMoreThan60Years: bool,
-      ~credits: option(array(Credit.t))
-    ) =>
-    t;
-  let view: t => view;
-} = {
-  type age =
-    | More60Year
-    | Less60Years;
-
-  type view = {
-    name: string,
-    firstname: string,
-    age,
-    income: Income.t,
-    credits: option(array(Credit.t)),
-  };
-
-  type t = {
-    name: string,
-    firstname: string,
-    age,
-    income: Income.t,
-    credits: option(array(Credit.t)),
-  };
-
-  let make = (~name, ~firstname, ~income, ~hasMoreThan60Years, ~credits) => {
-    name,
-    firstname,
-    income,
-    age: hasMoreThan60Years ? More60Year : Less60Years,
-    credits,
-  };
-
-  let view: t => view =
-    t => {
-      let {name, firstname, age, income, credits} = t;
-      {name, firstname, age, income, credits};
-    };
-};
-
 module Household: {
   type t;
   type view =
