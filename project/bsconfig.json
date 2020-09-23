@@ -13,6 +13,10 @@
       "subdirs": true,
     },
     {
+      "dir": "library",
+      "subdirs": true,
+    },
+    {
       "dir": "__tests__",
       "subdirs": true,
       "type": "dev"

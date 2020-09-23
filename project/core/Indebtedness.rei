@@ -11,3 +11,8 @@ let view: t => view;
 
 let make: (~credits: array(Type.Credit.t)=?, Type.Income.t) => t;
 let makeFromHousehold: Household.t => t;
+
+let getSumCredit: view => Type.Credit.t;
+let getRate: view => float;
+
+let maxIndebtedness: Type.Amount.t;

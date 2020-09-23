@@ -1,3 +1,4 @@
+let maxIndebtedness = Type.Amount.make(0.33333);
 type indebtedness = {
   sumCredit: Type.Credit.t,
   rate: float,
@@ -66,3 +67,14 @@ let makeFromHousehold = (household): t => {
   | Single(first) => makeFromPeople(first)
   };
 };
+
+let getRate = (t: view) =>
+  switch (t) {
+  | More33({rate})
+  | Less33({rate}) => rate
+  };
+let getSumCredit = (t: view) =>
+  switch (t) {
+  | More33({sumCredit})
+  | Less33({sumCredit}) => sumCredit
+  };

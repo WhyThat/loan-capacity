@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoanCapacity Couple indebted 1`] = `
+Array [
+  Array [
+    Object {
+      "duration": 0,
+      "monthlyPayment": 3.3333,
+      "rate": 1.4,
+      "total": 591.5940839999998,
+    },
+    Object {
+      "duration": 1,
+      "monthlyPayment": 3.3333,
+      "rate": 1.4,
+      "total": 788.7921119999999,
+    },
+    Object {
+      "duration": 2,
+      "monthlyPayment": 3.3333,
+      "rate": 1.4,
+      "total": 985.9901399999999,
+    },
+  ],
+]
+`;
+
+exports[`LoanCapacity Couple to much indebted 1`] = `
+Array [
+  "Vous avez plus de 33% d'endettement, vous ne pouvez pas
+                        emprunter pou le moment",
+]
+`;
+
+exports[`LoanCapacity Couple with full capacity 1`] = `
+Array [
+  Array [
+    Object {
+      "duration": 0,
+      "monthlyPayment": 66.666,
+      "rate": 1.4,
+      "total": 11831.88168,
+    },
+    Object {
+      "duration": 1,
+      "monthlyPayment": 66.666,
+      "rate": 1.4,
+      "total": 15775.84224,
+    },
+    Object {
+      "duration": 2,
+      "monthlyPayment": 66.666,
+      "rate": 1.4,
+      "total": 19719.802799999998,
+    },
+  ],
+]
+`;
+
+exports[`LoanCapacity Single indebted 1`] = `
+Array [
+  Array [
+    Object {
+      "duration": 0,
+      "monthlyPayment": 1.66665,
+      "rate": 1.4,
+      "total": 295.7970419999999,
+    },
+    Object {
+      "duration": 1,
+      "monthlyPayment": 1.66665,
+      "rate": 1.4,
+      "total": 394.39605599999993,
+    },
+    Object {
+      "duration": 2,
+      "monthlyPayment": 1.66665,
+      "rate": 1.4,
+      "total": 492.99506999999994,
+    },
+  ],
+]
+`;
+
+exports[`LoanCapacity Single too much indebted 1`] = `
+Array [
+  "Vous avez plus de 33% d'endettement, vous ne pouvez pas
+                        emprunter pou le moment",
+]
+`;
+
+exports[`LoanCapacity Single with full capacity 1`] = `
+Array [
+  Array [
+    Object {
+      "duration": 0,
+      "monthlyPayment": 33.333,
+      "rate": 1.4,
+      "total": 5915.94084,
+    },
+    Object {
+      "duration": 1,
+      "monthlyPayment": 33.333,
+      "rate": 1.4,
+      "total": 7887.92112,
+    },
+    Object {
+      "duration": 2,
+      "monthlyPayment": 33.333,
+      "rate": 1.4,
+      "total": 9859.901399999999,
+    },
+  ],
+]
+`;

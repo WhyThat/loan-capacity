@@ -12,10 +12,10 @@ type view = {
 };
 let make:
   (
-    ~duration: duration,
-    ~monthlyPayment: Amount.t,
+    ~capacityByYear: Amount.t,
     ~rate: float,
-    ~total: Amount.t
+    ~monthlyPayment: Amount.t,
+    duration
   ) =>
   t;
 let view: t => view;

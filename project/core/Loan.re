@@ -17,11 +17,20 @@ type t = {
   total: Amount.t,
 };
 
-let make = (~duration, ~monthlyPayment, ~rate, ~total) => {
+let durationToAmount = duration =>
+  (
+    switch (duration) {
+    | FifteenYears => 15.
+    | TwentyYears => 20.
+    | TwentyFiveYears => 25.
+    }
+  )
+  |> Amount.make;
+let make = (~capacityByYear, ~rate, ~monthlyPayment, duration) => {
   duration,
   monthlyPayment,
   rate,
-  total,
+  total: duration |> durationToAmount |> Amount.sum(capacityByYear),
 };
 
 let view: t => view =
