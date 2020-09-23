@@ -2,9 +2,9 @@
 
 ## Picth
 
-On va avoir besoin d'avoir l'income d'un menage, 
- - Mettre Household dans son propre fichier et créer le fichier `.rei` associé
- - Creer la fonction getIncome ```t => Income.t```
+On va avoir besoin d'avoir du taux d'endettement d'un menage, 
+ - Mettre Indebtedness dans son propre fichier et créer le fichier `.rei` associé
+ - Creer la fonction `makeFromHousehold` ```Household.t => t```
 
 
 ## Installation
