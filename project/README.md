@@ -2,12 +2,33 @@
 
 ## Picth
 
-Nous allons être à manipuler des floats ... certe mais ça serait bien de pas se tromper entre un taux et un montant total
+    Nous allons créer les getters et setter pour `People
+    - Mettre People dans son fichier `People.re`
+    - Créer le fichier `.rei` associé
+    - ajouter le module de Getter
+    ```reason
+      module Getter: {
+        let getName: t => string;
+        let getFirstname: t => string;
+        let getAge: t => age;
+        let getIncomeInInt: t => int;
+        let getCredits: t => array(float);
+      };
+    ```
+    - ajouter le module `Setter`
 
-Il nous faut donc créer notre propre Float et l'implémenter pour tous les autre
-- Creer un module type Float qui prend les opération courante sur les float ainsi qu'une fonction make et un float
-- creer un module pour chaque float utilisé et modifier l'implémentation
-- Bonus: créer les operateurs infix 
+    ```reason
+    module Setter: {
+      let setName: (string, t) => t;
+      let setFirstname: (string, t) => t;
+      let setAge: (age, t) => t;
+      let setIncome: (float, t) => t;
+      let setCredits: (option(array(float)), t) => t;
+      let removeCreditAt: (int, t) => t;
+      let updateCreditAt: (int, float, t) => t;
+    };
+    ```
+    - ajouter les implémentations
 
 
 ## Installation
